@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 interface Product {
   id: number;
@@ -15,7 +15,6 @@ interface ProductTableProps {
 }
 
 const ProductTable: FC<ProductTableProps> = ({ products }) => {
-
   return (
     <div className="table-responsive">
       <table className="table table-striped table-bordered">
@@ -30,11 +29,8 @@ const ProductTable: FC<ProductTableProps> = ({ products }) => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => {
-            const { id, name, category, price, currency, image_name, color } =
-              product;
-
-            return (
+          {products.map(
+            ({ id, name, category, price, currency, image_name, color }) => (
               <tr key={id}>
                 <td style={{ backgroundColor: color }}>
                   <img
@@ -57,8 +53,8 @@ const ProductTable: FC<ProductTableProps> = ({ products }) => {
                   ></i>
                 </td>
               </tr>
-            );
-          })}
+            )
+          )}
         </tbody>
       </table>
     </div>

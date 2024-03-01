@@ -3,12 +3,13 @@ import UseProductGet from "../../custom-hooks/ProductGet";
 import SelectComponent from "../../components/SelectComponent";
 import ProductTable from "./components/ProductTable";
 import ProductTableFooter from "./components/ProductTableFooter";
+import { sort_options } from "../../helpers/MockData";
 
 const ProductList: React.FC = () => {
   const { productData, isLoading, error } = UseProductGet();
 
   const [sortField, setSortField] = useState("");
-  const [sortDirection, setSortDirection] = useState("asc");
+  const [sortDirection, setSortDirection] = useState("");
 
   const handleSortChange = (value: string) => {
     if (value === sortField) {
@@ -28,14 +29,6 @@ const ProductList: React.FC = () => {
   } else if (sortField.includes("price")) {
     sortedProducts.sort((a, b) => (sortDirection === "asc" ? a.price - b.price : b.price - a.price));
   }
-
-  const sort_options = [
-    { value: "", label: "Önerilen Sıralama" },
-    { value: "nameAsc", label: "İsime göre (Artan)", direction: "asc" },
-    { value: "nameDesc", label: "İsime göre (Azalan)", direction: "desc" },
-    { value: "priceAsc", label: "Fiyata göre (Artan)", direction: "asc" },
-    { value: "priceDesc", label: "Fiyata göre (Azalan)", direction: "desc" },
-  ];
 
   return (
     <div className="card p-5 container mt-2 mb-2">

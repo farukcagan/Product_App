@@ -22,9 +22,11 @@ const UseProductGet = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
-  //  bu customHooks komponentinde bir urle istek atıp dönen veriyi istediğimiz diğer komponentlerde kullanabiliriz.
+  //  bu customHooks komponentinde bir apiye istek atıp dönen veriyi istediğimiz diğer komponentlerde kullanabiliriz.
   //  bu sayede aynı isteği iki defa yapmak durumunda kalırsak ayrı ayrı istek yapmak yerine bu componentin return
   //  kısmında dönen statei bir fonksiyon gibi istek yapacağımız komponentlerde çağırırız.
+
+  //  örnek istek
 
   useEffect(() => {
     const fetchData = async () => {
