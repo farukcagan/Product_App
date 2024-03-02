@@ -15,7 +15,7 @@
         "category": "Coat",
         "currency": "USD",
         "image_name": "long-coat",
-        "color": "Grey"
+        "color": "Black"
     },
     {
         "id": 14536,
@@ -42,7 +42,7 @@
         "category": "Coat",
         "currency": "USD",
         "image_name": "blazer-coat",
-        "color": "Grey"
+        "color": "Black"
     },
     {
         "id": 11189,
@@ -51,7 +51,7 @@
         "category": "Dress",
         "currency": "USD",
         "image_name": "scoop-neck-midi-dress",
-        "color": "Purple"
+        "color": "Black"
     },
     {
         "id": 17238,
@@ -87,6 +87,6 @@
         "category": "Dress",
         "currency": "USD",
         "image_name": "casual-dress",
-        "color": "Grey"
+        "color": "Black"
     }
 ]

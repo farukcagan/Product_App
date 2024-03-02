@@ -1,91 +1,113 @@
-import React, { useEffect, useState } from "react";
-import UseProductGet from "../../custom-hooks/ProductGet";
+import React, { useEffect, useMemo, useState } from "react";
+import SearchBar from "../../components/GenericSearchBar";
 import SelectComponent from "../../components/SelectComponent";
+import UseProductGet from "../../custom-hooks/ProductGet";
+import { filter_options, sort_options } from "../../helpers/MockData";
 import ProductTable from "./components/ProductTable";
 import ProductTableFooter from "./components/ProductTableFooter";
-import { filter_options, sort_options } from "../../helpers/MockData";
-import SearchBar from "../../components/GenericSearchBar";
+import { filterProducts, sortProducts } from "../../helpers/ProductHelpers";
+
+interface Product {
+  id: number;
+  price: number;
+  name: string;
+  category: string;
+  currency: string;
+  image_name: string;
+  color: string;
+}
+
+interface Filters {
+  sortField: string;
+  sortDirection: string;
+  filterField: string;
+  searchTerm: string;
+  categoryFilter: string;
+  colorFilter: string;
+  resetFilter: boolean;
+  sortedProducts: Product[];
+}
 
 const ProductList: React.FC = () => {
-  const { productData, isLoading, error } = UseProductGet();
-  const [sortField, setSortField] = useState("");
-  const [sortDirection, setSortDirection] = useState("");
-  const [filterField, setFilterField] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortedProducts, setSortedProducts] = useState([...productData]);
-  const [categoryFilter, setCategoryFilter] = useState("");
+  const { productData } = UseProductGet();
+  const [filters, setFilters] = useState<Filters>({
+    sortField: "",
+    sortDirection: "",
+    filterField: "",
+    searchTerm: "",
+    categoryFilter: "",
+    colorFilter: "",
+    resetFilter: false,
+    sortedProducts: [...productData],
+  });
 
-  const handleCategoryFilter = (value: string) => {
-    setCategoryFilter(value);
-  };
+  const handleFilterChange = (value: string) =>
+    setFilters((prevFilters) => ({ ...prevFilters, filterField: value, resetFilter: true }));
 
-  const handleSortChange = (value: string) => {
-    if (value === sortField) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-    } else {
-      setSortField(value);
-      setSortDirection(value.includes("Desc") ? "desc" : "asc");
-    }
-  };
+  const handleSearch = (value: string) => setFilters((prevFilters) => ({ ...prevFilters, searchTerm: value }));
 
-  const handleFilterChange = (value: string) => {
-    setFilterField(value);
-  };
+  const handleCategoryFilter = (value: string) => setFilters((prevFilters) => ({ ...prevFilters, categoryFilter: value }));
 
-  const handleSearch = (value: string) => {
-    setSearchTerm(value);
-  };
+  const handleColorFilter = (value: string) => setFilters((prevFilters) => ({ ...prevFilters, colorFilter: value }));
 
+  const handleSortChange = (value: string) =>
+    setFilters((prevFilters) => {
+      const sortDirection =
+        value === prevFilters.sortField
+          ? prevFilters.sortDirection === "asc"
+            ? "desc"
+            : "asc"
+          : value.includes("Desc")
+          ? "desc"
+          : "asc";
+      return { ...prevFilters, sortField: value, sortDirection };
+    });
+
+    
   useEffect(() => {
-    const filteredProducts = productData.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const { resetFilter, searchTerm, sortField, sortDirection, categoryFilter, colorFilter } = filters;
 
-    const filteredCategoryProducts = productData.filter((product) =>
-      product.category.toLowerCase().includes(categoryFilter.toLowerCase())
-    );
-
-    if (sortField.includes("name")) {
-      filteredProducts.sort((a, b) =>
-        sortDirection === "asc"
-          ? a.name.localeCompare(b.name)
-          : b.name.localeCompare(a.name)
-      );
-    } else if (sortField.includes("price")) {
-      filteredProducts.sort((a, b) =>
-        sortDirection === "asc" ? a.price - b.price : b.price - a.price
-      );
+    if (resetFilter) {
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        categoryFilter: "",
+        colorFilter: "",
+        searchTerm: "",
+        resetFilter: false,
+      }));
     }
 
-    setSortedProducts(filteredCategoryProducts);
-  }, [searchTerm, sortField, sortDirection, productData, categoryFilter]);
+    const filteredProducts = filterProducts(productData, searchTerm, categoryFilter, colorFilter);
+    const sortedProducts = sortProducts(filteredProducts, sortField, sortDirection);
 
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      sortedProducts,
+    }));
+  }, [filters, productData]);
 
-  const uniqueCategories = [
-    { value: '', label: 'Seçiniz' },
-    ...Array.from(new Set(productData.map((el) => el.category))).map((category) => ({
-      value: category,
-      label: category,
-    })),
-  ];
-  
+  const uniqueCategories = useMemo(() => [
+    { value: "", label: "Seçiniz" },
+    ...Array.from(new Set(productData.map((el) => el.category))).map((category) => ({ value: category, label: category })),
+  ], [productData]);
+
+  const uniqueColors = useMemo(() => [
+    { value: "", label: "Seçiniz" },
+    ...Array.from(new Set(productData.map((el) => el.color))).map((color) => ({ value: color, label: color })),
+  ], [productData]);
 
   const renderComponent = (filterField: string) => {
     switch (filterField) {
       case "name":
-        return (
-          <SearchBar placeholder="Ürün adıyla ara" onSearch={handleSearch} />
-        );
+        return <SearchBar placeholder="Ürün adıyla ara" onSearch={handleSearch} />;
       case "category":
         return (
-          <SelectComponent
-            height={40}
-            onChange={handleCategoryFilter}
-            placeholder="Kategoriye göre filtrele"
-            options={uniqueCategories}
-          />
+          <SelectComponent height={40} onChange={handleCategoryFilter} placeholder="Kategoriye göre filtrele" options={uniqueCategories} />
         );
-     
+      case "color":
+        return (
+          <SelectComponent height={40} onChange={handleColorFilter} placeholder="Rengine göre filtrele" options={uniqueColors} />
+        );
       default:
         return null;
     }
@@ -95,28 +117,18 @@ const ProductList: React.FC = () => {
     <div className="card p-5 container mt-2 mb-2">
       <h1 className="text-left">Ürün Listesi</h1>
       <div className="d-flex gap-2 mb-3 justify-content-end">
-        <SelectComponent
-          height={40}
-          onChange={handleSortChange}
-          placeholder="Sırala"
-          options={sort_options}
-        />
-        <SelectComponent
-          height={40}
-          onChange={handleFilterChange}
-          placeholder="Filtrele"
-          options={filter_options}
-        />
-        {renderComponent(filterField)}
+        <SelectComponent height={40} onChange={handleSortChange} placeholder="Sırala" options={sort_options} />
+        <SelectComponent height={40} onChange={handleFilterChange} placeholder="Filtre Ekle" options={filter_options} />
+        {renderComponent(filters.filterField)}
       </div>
       <div className="row">
         <div className="col">
-          <ProductTable products={sortedProducts} />
+          <ProductTable products={filters.sortedProducts} />
         </div>
       </div>
       <div className="row">
         <div className="col">
-          <ProductTableFooter products={productData} />
+          <ProductTableFooter products={filters.sortedProducts} />
         </div>
       </div>
     </div>

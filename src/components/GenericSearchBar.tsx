@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, FormControl, InputGroup, Button } from "react-bootstrap";
 
 interface SearchBarProps<T> {
@@ -17,23 +17,24 @@ function SearchBar<T>({ placeholder = "Ara", onSearch }: SearchBarProps<T>) {
     setSearchQuery(e.target.value);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
+  useEffect(() => {
+    handleSearch();
+  }, [searchQuery]);
 
   return (
-    <InputGroup className="mb-3">
+    <InputGroup className="mb-3" style={{maxWidth:"250px"}}>
       <FormControl
         placeholder={placeholder}
         aria-label="Search"
         aria-describedby="basic-addon2"
         value={searchQuery}
         onChange={handleChange}
-        onKeyPress={handleKeyPress}
       />
-      <Button variant="outline-secondary" id="button-addon2" onClick={handleSearch}>
+      <Button
+        variant="outline-secondary"
+        id="button-addon2"
+        onClick={handleSearch}
+      >
         <i className="bi bi-search"></i>
       </Button>
     </InputGroup>

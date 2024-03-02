@@ -7,10 +7,8 @@ export const sort_options = [
 ];
 
 export const filter_options = [
-  {value: '', label: 'Önerilen Sıralama'},
+  {value: '', label: 'Filtre Ekle'},
   {value: 'name', label: 'İsme göre'},
   {value: 'category', label: 'Kategoriye göre'},
-  {value: 'price', label: 'Fiyata göre'},
-  {value: 'currency', label: 'Para Birimine göre'},
   {value: 'color', label: 'Renge göre'},
 ];

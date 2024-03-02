@@ -25,6 +25,7 @@ const ProductTable: FC<ProductTableProps> = ({ products }) => {
             <th>Kategorisi</th>
             <th>Fiyatı</th>
             <th>Para Birimi</th>
+            <th>Renk</th>
             <th>Ürün Detay</th>
           </tr>
         </thead>
@@ -32,7 +33,7 @@ const ProductTable: FC<ProductTableProps> = ({ products }) => {
           {products.map(
             ({ id, name, category, price, currency, image_name, color }) => (
               <tr key={id}>
-                <td style={{ backgroundColor: color }}>
+                <td>
                   <img
                     src={`/media/${image_name}.png`}
                     alt=""
@@ -40,16 +41,24 @@ const ProductTable: FC<ProductTableProps> = ({ products }) => {
                     className="img-fluid rounded"
                   />
                 </td>
-                <td style={{ backgroundColor: color }}>{name}</td>
-                <td style={{ backgroundColor: color }}>{category}</td>
-                <td
-                  style={{ backgroundColor: color }}
-                >{`${price} ${currency}`}</td>
-                <td style={{ backgroundColor: color }}>{currency}</td>
-                <td style={{ backgroundColor: color }}>
+                <td>{name}</td>
+                <td>{category}</td>
+                <td>{`${price} ${currency}`}</td>
+                <td>{currency}</td>
+                <td>
+                  <div
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      border:"1px solid grey",
+                      backgroundColor: color,
+                    }}
+                  ></div>
+                </td>
+                <td>
                   <i
                     style={{ cursor: "pointer" }}
-                    className="bi bi-files cursor-pointer"
+                    className="bi bi-files"
                   ></i>
                 </td>
               </tr>
