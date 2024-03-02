@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import UseProductWithId from "../../custom-hooks/ProductGetWithId";
 import "./ProductDetail.css";
+
 interface ProductData {
   id: number;
   price: number;
@@ -17,6 +18,17 @@ const ProductDetail: React.FC = () => {
   const { productId } = useParams();
   const numericProductId = productId ? parseInt(productId, 10) : undefined;
   const { productData } = UseProductWithId(numericProductId);
+
+  if (
+    !productData ||
+    (Array.isArray(productData) && productData.length === 0)
+  ) {
+    return (
+      <div className="centered-frame">
+        <p>Ürün bilgileri yüklenirken bir hata oluştu.</p>
+      </div>
+    );
+  }
 
   const {
     name,
