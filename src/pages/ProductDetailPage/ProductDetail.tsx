@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import UseProductWithId from "../../custom-hooks/ProductGetWithId";
-import "./ProductDetail.css"; // Özel stil dosyası
-
+import "./ProductDetail.css";
 interface ProductData {
   id: number;
   price: number;

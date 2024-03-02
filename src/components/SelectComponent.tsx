@@ -21,7 +21,7 @@ const SelectComponent: React.FC<SelectModel> = ({ height = 48, ...props }) => {
           height,
           borderColor: 'grey',
           width:"100%",
-          minWidth:"250px"
+          minWidth:"200px"
         }),
       }}
     />

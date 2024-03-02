@@ -22,7 +22,7 @@ function SearchBar<T>({ placeholder = "Ara", onSearch }: SearchBarProps<T>) {
   }, [searchQuery]);
 
   return (
-    <InputGroup className="mb-3" style={{maxWidth:"250px"}}>
+    <InputGroup className="mb-3" style={{ maxWidth: "200px" }}>
       <FormControl
         placeholder={placeholder}
         aria-label="Search"
