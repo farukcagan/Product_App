@@ -63,8 +63,7 @@ const ProductList: React.FC = () => {
       return { ...prevFilters, sortField: value, sortDirection };
     });
 
-    useProductFilters(filters, productData, setFilters);
-
+  useProductFilters(filters, productData, setFilters);
 
   const uniqueCategories = useMemo(
     () => [
@@ -90,7 +89,11 @@ const ProductList: React.FC = () => {
     switch (filterField) {
       case "name":
         return (
-          <SearchBar placeholder="Ürün adıyla ara" onSearch={handleSearch} />
+          <SearchBar
+            placeholder="Ürün adıyla ara"
+            onSearch={handleSearch}
+            filterText={filters.searchTerm}
+          />
         );
       case "category":
         return (
@@ -125,7 +128,7 @@ const ProductList: React.FC = () => {
     "Renk",
     "Ürün Detayı",
   ];
-  
+
   return (
     <div className="card p-5 container mt-2 mb-2">
       <h1 className="text-left">Ürün Listesi</h1>

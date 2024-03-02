@@ -4,22 +4,18 @@ import { Form, FormControl, InputGroup, Button } from "react-bootstrap";
 interface SearchBarProps<T> {
   placeholder?: string;
   onSearch: (query: string) => void;
+  filterText: string;
 }
 
-function SearchBar<T>({ placeholder = "Ara", onSearch }: SearchBarProps<T>) {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-
-  const handleSearch = () => {
-    onSearch(searchQuery);
-  };
-
+function SearchBar<T>({
+  placeholder = "Ara",
+  onSearch,
+  filterText,
+}: SearchBarProps<T>) {
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    onSearch(e.target.value);
   };
-
-  useEffect(() => {
-    handleSearch();
-  }, [searchQuery]);
 
   return (
     <InputGroup className="mb-3" style={{ maxWidth: "200px" }}>
@@ -27,14 +23,10 @@ function SearchBar<T>({ placeholder = "Ara", onSearch }: SearchBarProps<T>) {
         placeholder={placeholder}
         aria-label="Search"
         aria-describedby="basic-addon2"
-        value={searchQuery}
+        value={filterText}
         onChange={handleChange}
       />
-      <Button
-        variant="outline-secondary"
-        id="button-addon2"
-        onClick={handleSearch}
-      >
+      <Button variant="outline-secondary" id="button-addon2">
         <i className="bi bi-search"></i>
       </Button>
     </InputGroup>
