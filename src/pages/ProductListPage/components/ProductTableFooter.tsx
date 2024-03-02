@@ -8,6 +8,7 @@ interface Product {
   currency: string;
   image_name: string;
   color: string;
+  description: string
 }
 
 interface ProductTableFooterProps {

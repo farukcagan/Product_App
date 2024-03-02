@@ -15,6 +15,7 @@ interface Product {
   currency: string;
   image_name: string;
   color: string;
+  description: string
 }
 
 interface Filters {
@@ -63,7 +64,7 @@ const ProductList: React.FC = () => {
       return { ...prevFilters, sortField: value, sortDirection };
     });
 
-    
+
   useEffect(() => {
     const { resetFilter, searchTerm, sortField, sortDirection, categoryFilter, colorFilter } = filters;
 

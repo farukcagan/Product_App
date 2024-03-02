@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -8,6 +9,7 @@ interface Product {
   currency: string;
   image_name: string;
   color: string;
+  description: string
 }
 
 interface ProductTableProps {
@@ -50,16 +52,18 @@ const ProductTable: FC<ProductTableProps> = ({ products }) => {
                     style={{
                       width: "20px",
                       height: "20px",
-                      border:"1px solid grey",
+                      border: "1px solid grey",
                       backgroundColor: color,
                     }}
                   ></div>
                 </td>
                 <td>
-                  <i
-                    style={{ cursor: "pointer" }}
-                    className="bi bi-files"
-                  ></i>
+                  <Link to={`/product-detail/${id}`}>
+                    <i
+                      style={{ cursor: "pointer" }}
+                      className="bi bi-files"
+                    ></i>
+                  </Link>
                 </td>
               </tr>
             )
