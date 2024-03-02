@@ -18,7 +18,7 @@ type UseProductGetResult = {
   error: Error | null;
 };
 
-const UseProductWithId = (id?: any): UseProductGetResult => {
+const useProductWithId = (id?: number): UseProductGetResult => {
   const [productData, setProductData] = useState<ProductData[] | ProductData>(
     []
   );
@@ -40,7 +40,7 @@ const UseProductWithId = (id?: any): UseProductGetResult => {
             filteredData.length > 0 ? filteredData[0] : ({} as ProductData)
           );
         } else {
-          setProductData(jsonData);
+          setError(new Error("Id hatası"));
         }
       } catch (error) {
         if (error instanceof SyntaxError) {
@@ -59,4 +59,4 @@ const UseProductWithId = (id?: any): UseProductGetResult => {
   return { productData, isLoading, error };
 };
 
-export default UseProductWithId;
+export default useProductWithId;

@@ -18,7 +18,7 @@ type UseUserDataResult = {
   error: Error | null;
 };
 
-const UseProductGet = () => {
+const useProductGet = () => {
   const [productData, setProductData] = useState<productData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
@@ -51,4 +51,4 @@ const UseProductGet = () => {
   return { productData, isLoading, error } as UseUserDataResult;
 };
 
-export default UseProductGet;
+export default useProductGet;

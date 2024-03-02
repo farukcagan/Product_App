@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import UseProductWithId from "../../custom-hooks/ProductGetWithId";
+import useProductWithId from "../../custom-hooks/ProductGetWithId";
 import "./ProductDetail.css";
 
 interface ProductData {
@@ -17,7 +17,7 @@ interface ProductData {
 const ProductDetail: React.FC = () => {
   const { productId } = useParams();
   const numericProductId = productId ? parseInt(productId, 10) : undefined;
-  const { productData } = UseProductWithId(numericProductId);
+  const { productData } = useProductWithId(numericProductId);
 
   if (
     !productData ||
