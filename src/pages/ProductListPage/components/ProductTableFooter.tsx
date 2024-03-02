@@ -19,9 +19,9 @@ const ProductTableFooter: React.FC<ProductTableFooterProps> = ({
   products,
 }) => {
   return (
-    <div className="card p-2">
+    <div className="card bg-white p-2">
       <div className="d-flex justify-content-end">
-        <span className="fs-5 fw-bold">
+        <span className="fs-5 fw-bold p-1">
           Toplam Ürün Sayısı : <span className="fs-5"> {products.length}</span>
         </span>
       </div>

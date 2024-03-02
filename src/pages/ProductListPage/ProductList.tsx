@@ -128,7 +128,7 @@ const ProductList: React.FC = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col">
+        <div className="col mt-4">
           <ProductTableFooter products={filters.sortedProducts} />
         </div>
       </div>

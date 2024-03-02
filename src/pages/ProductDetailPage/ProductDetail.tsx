@@ -18,17 +18,6 @@ const ProductDetail: React.FC = () => {
   const numericProductId = productId ? parseInt(productId, 10) : undefined;
   const { productData } = UseProductWithId(numericProductId);
 
-  if (
-    !productData ||
-    (Array.isArray(productData) && productData.length === 0)
-  ) {
-    return (
-      <div className="centered-frame">
-        <p>Ürün bilgileri yüklenirken bir hata oluştu.</p>
-      </div>
-    );
-  }
-
   const {
     name,
     price,

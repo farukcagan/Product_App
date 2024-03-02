@@ -9,7 +9,7 @@ interface Product {
   currency: string;
   image_name: string;
   color: string;
-  description: string
+  description: string;
 }
 
 interface ProductTableProps {
@@ -18,9 +18,17 @@ interface ProductTableProps {
 
 const ProductTable: FC<ProductTableProps> = ({ products }) => {
   return (
-    <div className="table-responsive">
+    <div className="table-responsive"  style={{height:"400px",overflow:"auto"}}>
       <table className="table table-striped table-bordered">
-        <thead className="thead-dark">
+        <thead
+          className="thead-dark"
+          style={{
+            position: "sticky",
+            top: 0,
+            backgroundColor: "white",
+            verticalAlign: "middle",
+          }}
+        >
           <tr>
             <th>Photo</th>
             <th>Adı</th>

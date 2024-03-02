@@ -27,7 +27,7 @@ const UseProductGet = () => {
   //  bu sayede aynı isteği iki defa yapmak durumunda kalırsak ayrı ayrı istek yapmak yerine bu componentin return
   //  kısmında dönen statei bir fonksiyon gibi istek yapacağımız komponentlerde çağırırız.
 
-  //  örnek istek
+  //  örnek istek şeklinde tasarlanmış hali
 
   useEffect(() => {
     const fetchData = async () => {
