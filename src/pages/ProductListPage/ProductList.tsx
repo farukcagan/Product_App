@@ -1,23 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import SearchBar from "../../components/GenericSearchBar";
 import SelectComponent from "../../components/SelectComponent";
-import UseProductGet from "../../custom-hooks/ProductGet";
+import useProductGet from "../../custom-hooks/ProductGet";
 import { filter_options, sort_options } from "../../helpers/MockData";
+import { filterProducts, sortProducts } from "../../helpers/ProductHelpers";
 import ProductTable from "./components/ProductTable";
 import ProductTableFooter from "./components/ProductTableFooter";
-import { filterProducts, sortProducts } from "../../helpers/ProductHelpers";
-import useProductGet from "../../custom-hooks/ProductGet";
-
-interface Product {
-  id: number;
-  price: number;
-  name: string;
-  category: string;
-  currency: string;
-  image_name: string;
-  color: string;
-  description: string;
-}
+import useProductFilters from "../../custom-hooks/ProductFilter";
+import { ProductModels } from "../../helpers/model";
 
 interface Filters {
   sortField: string;
@@ -27,7 +17,7 @@ interface Filters {
   categoryFilter: string;
   colorFilter: string;
   resetFilter: boolean;
-  sortedProducts: Product[];
+  sortedProducts: ProductModels[];
 }
 
 const ProductList: React.FC = () => {
@@ -73,43 +63,8 @@ const ProductList: React.FC = () => {
       return { ...prevFilters, sortField: value, sortDirection };
     });
 
-  useEffect(() => {
-    const {
-      resetFilter,
-      searchTerm,
-      sortField,
-      sortDirection,
-      categoryFilter,
-      colorFilter,
-    } = filters;
+    useProductFilters(filters, productData, setFilters);
 
-    if (resetFilter) {
-      setFilters((prevFilters) => ({
-        ...prevFilters,
-        categoryFilter: "",
-        colorFilter: "",
-        searchTerm: "",
-        resetFilter: false,
-      }));
-    }
-
-    const filteredProducts = filterProducts(
-      productData,
-      searchTerm,
-      categoryFilter,
-      colorFilter
-    );
-    const sortedProducts = sortProducts(
-      filteredProducts,
-      sortField,
-      sortDirection
-    );
-
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      sortedProducts,
-    }));
-  }, [filters, productData]);
 
   const uniqueCategories = useMemo(
     () => [

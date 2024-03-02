@@ -1,25 +1,16 @@
 import { useState, useEffect } from "react";
 import jsonData from "../helpers/Products.json";
+import { ProductModels } from "../helpers/model";
 
-type ProductData = {
-  id: number;
-  price: number;
-  name: string;
-  category: string;
-  currency: string;
-  image_name: string;
-  color: string;
-  description: string;
-};
 
 type UseProductGetResult = {
-  productData: ProductData[] | ProductData;
+  productData: ProductModels[] | ProductModels;
   isLoading: boolean;
   error: Error | null;
 };
 
 const useProductWithId = (id?: number): UseProductGetResult => {
-  const [productData, setProductData] = useState<ProductData[] | ProductData>(
+  const [productData, setProductData] = useState<ProductModels[] | ProductModels>(
     []
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -37,7 +28,7 @@ const useProductWithId = (id?: number): UseProductGetResult => {
         if (id !== undefined) {
           const filteredData = jsonData.filter((product) => product.id === id);
           setProductData(
-            filteredData.length > 0 ? filteredData[0] : ({} as ProductData)
+            filteredData.length > 0 ? filteredData[0] : ({} as ProductModels)
           );
         } else {
           setError(new Error("Id hatası"));

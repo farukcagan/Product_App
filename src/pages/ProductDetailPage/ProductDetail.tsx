@@ -2,17 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useProductWithId from "../../custom-hooks/ProductGetWithId";
 import "./ProductDetail.css";
-
-interface ProductData {
-  id: number;
-  price: number;
-  name: string;
-  category: string;
-  currency: string;
-  image_name: string;
-  color: string;
-  description: string;
-}
+import { ProductModels } from "../../helpers/model";
 
 const ProductDetail: React.FC = () => {
   const { productId } = useParams();
@@ -38,7 +28,7 @@ const ProductDetail: React.FC = () => {
     image_name,
     color,
     description,
-  }: ProductData = Array.isArray(productData) ? productData[0] : productData;
+  }: ProductModels = Array.isArray(productData) ? productData[0] : productData;
 
   return (
     <div className="container">

@@ -1,19 +1,9 @@
 import React from "react";
 import { ProductTableRow } from "./ProductTableRow";
-
-interface Product {
-  id: number;
-  price: number;
-  name: string;
-  category: string;
-  currency: string;
-  image_name: string;
-  color: string;
-  description: string;
-}
+import { ProductModels } from "../../../helpers/model";
 
 interface ProductTableProps {
-  products: Product[];
+  products: ProductModels[];
   headings: string[];
 }
 

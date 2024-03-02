@@ -1,19 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ProductModels } from "../../../helpers/model";
 
-interface Product {
-  id: number;
-  price: number;
-  name: string;
-  category: string;
-  currency: string;
-  image_name: string;
-  color: string;
-  description: string;
-}
 
 interface ProductRowProps {
-  product: Product;
+  product: ProductModels;
 }
 
 export const ProductTableRow: React.FC<ProductRowProps> = ({ product }) => {
