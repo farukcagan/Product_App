@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import jsonData from "../helpers/Products.json";
-import { ProductModels } from "../helpers/model";
+import { ProductModels } from "../models/model";
 
 
 type UseProductGetResult = {

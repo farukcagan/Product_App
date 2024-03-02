@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useProductWithId from "../../custom-hooks/ProductGetWithId";
+import { ProductModels } from "../../models/model";
 import "./ProductDetail.css";
-import { ProductModels } from "../../helpers/model";
 
 const ProductDetail: React.FC = () => {
   const { productId } = useParams();

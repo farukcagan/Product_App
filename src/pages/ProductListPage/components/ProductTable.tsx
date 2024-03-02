@@ -1,6 +1,6 @@
 import React from "react";
 import { ProductTableRow } from "./ProductTableRow";
-import { ProductModels } from "../../../helpers/model";
+import { ProductModels } from "../../../models/model";
 
 interface ProductTableProps {
   products: ProductModels[];

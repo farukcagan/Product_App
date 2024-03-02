@@ -1,13 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import SearchBar from "../../components/GenericSearchBar";
 import SelectComponent from "../../components/SelectComponent";
+import useProductFilters from "../../custom-hooks/ProductFilter";
 import useProductGet from "../../custom-hooks/ProductGet";
 import { filter_options, sort_options } from "../../helpers/MockData";
-import { filterProducts, sortProducts } from "../../helpers/ProductHelpers";
+import { ProductModels } from "../../models/model";
 import ProductTable from "./components/ProductTable";
 import ProductTableFooter from "./components/ProductTableFooter";
-import useProductFilters from "../../custom-hooks/ProductFilter";
-import { ProductModels } from "../../helpers/model";
 
 interface Filters {
   sortField: string;

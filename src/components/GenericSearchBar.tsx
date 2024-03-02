@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, FormControl, InputGroup, Button } from "react-bootstrap";
+import { Button, FormControl, InputGroup } from "react-bootstrap";
 
 interface SearchBarProps {
   placeholder?: string;

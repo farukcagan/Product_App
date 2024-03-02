@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { filterProducts, sortProducts } from "../helpers/ProductHelpers";
-import { ProductModels } from "../helpers/model";
+import { ProductModels } from "../models/model";
 
 interface Filters {
   sortField: string;
