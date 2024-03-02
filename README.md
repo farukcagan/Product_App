@@ -1,4 +1,3 @@
 # MomentUp_Case
 
- yarn install
- yarn start
+ yarn install -> yarn start
