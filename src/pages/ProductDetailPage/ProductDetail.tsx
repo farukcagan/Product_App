@@ -31,35 +31,37 @@ const ProductDetail: React.FC = () => {
   }: ProductModels = Array.isArray(productData) ? productData[0] : productData;
 
   return (
-    <div><div className="wrapper">
-      <div className="single-card">
-        <div className="img-area">
+    <div>
+      <div className="custom-wrapper">
+        <div className="custom-outer">
+          <div className="custom-content custom-animated custom-fadeInLeft">
+            <span className="custom-bg custom-animated custom-fadeInDown">
+              {name}
+            </span>
+            <h1 className="custom-h1">
+              <strong>Kategori: {category}</strong>
+            </h1>
+            <p className="custom-p">
+              <strong>Açıklama: </strong> {description}
+            </p>
+            <div className="custom-button">
+              <p className="custom-p">
+                <strong>Fiyat: </strong> {`${price} ${currency}`}
+              </p>
+              <p className="custom-p">
+                <strong>Renk: </strong>
+                {color}
+              </p>
+            </div>
+          </div>
           <img
             src={`/media/${image_name}.png`}
             alt={name}
-            className="image"
+            className="imgproduct"
           />
-        </div> 
-        <div className="info">
-        <h3>{name}</h3>
-        <p className="mt-2">
-          <strong>Kategori: </strong> {category}
-        </p>
-        <p>
-          <strong>Fiyat: </strong> {`${price} ${currency}`}
-        </p>
-        <p>
-          <strong>Açıklama: </strong> {description}
-        </p>
-        <p>
-          <strong>Renk: </strong>
-          {color}
-        </p>
+        </div>
       </div>
-      </div>
-    
-    </div></div>
-    
+    </div>
   );
 };
 

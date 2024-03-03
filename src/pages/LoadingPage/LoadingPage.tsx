@@ -6,7 +6,7 @@ import './Loading.css';
 interface SpinnerProps {
 }
 
-const Spinner: React.FC<SpinnerProps> = () => {
+const LoadingPage: React.FC<SpinnerProps> = () => {
   return (
     <div className="spinner-overlay">
       <div className="spinner"></div>
@@ -14,4 +14,4 @@ const Spinner: React.FC<SpinnerProps> = () => {
   );
 };
 
-export default Spinner;
+export default LoadingPage;

@@ -1,15 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import Spinner from "./pages/LoadingPage/LoadingPage";
+import LoadingPage from "./pages/LoadingPage/LoadingPage";
 
 const ProductList = lazy(() => import("./pages/ProductListPage/ProductList"));
-const ProductDetail = lazy(() => import("./pages/ProductDetailPage/ProductDetail"));
+const ProductDetail = lazy(
+  () => import("./pages/ProductDetailPage/ProductDetail")
+);
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Suspense fallback={<Spinner/>}>
+        <Suspense fallback={<LoadingPage />}>
           <Routes>
             <Route path="/" element={<ProductList />} />
             <Route

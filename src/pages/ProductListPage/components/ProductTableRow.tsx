@@ -37,7 +37,7 @@ export const ProductTableRow: React.FC<ProductRowProps> = ({ product }) => {
       </td>
       <td>
         <Link to={`/product-detail/${id}`}>
-          <i style={{ cursor: "pointer" }} className="bi bi-files"></i>
+          <i style={{ cursor: "pointer" }} className="bi bi-layout-text-window text-black"></i>
         </Link>
       </td>
     </tr>
