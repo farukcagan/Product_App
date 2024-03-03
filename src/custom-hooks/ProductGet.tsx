@@ -9,7 +9,6 @@ type productData = {
   currency: string;
   image_name: string;
   color: string;
-  description: string
 };
 
 type UseUserDataResult = {

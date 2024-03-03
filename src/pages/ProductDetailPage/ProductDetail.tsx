@@ -26,8 +26,7 @@ const ProductDetail: React.FC = () => {
     category,
     currency,
     image_name,
-    color,
-    description,
+    color
   }: ProductModels = Array.isArray(productData) ? productData[0] : productData;
 
   return (
@@ -41,9 +40,6 @@ const ProductDetail: React.FC = () => {
             <h1 className="custom-h1">
               <strong>Kategori: {category}</strong>
             </h1>
-            <p className="custom-p">
-              <strong>Açıklama: </strong> {description}
-            </p>
             <div className="custom-button">
               <p className="custom-p">
                 <strong>Fiyat: </strong> {`${price} ${currency}`}

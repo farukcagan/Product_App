@@ -6,5 +6,4 @@ export interface ProductModels {
     currency: string;
     image_name: string;
     color: string;
-    description: string;
   }
