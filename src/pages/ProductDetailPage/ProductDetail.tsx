@@ -37,9 +37,9 @@ const ProductDetail: React.FC = () => {
             <span className="custom-bg custom-animated custom-fadeInDown">
               {name}
             </span>
-            <h1 className="custom-h1">
+            <h4 className="custom-h1 mt-2">
               <strong>Kategori: {category}</strong>
-            </h1>
+            </h4>
             <div className="custom-button">
               <p className="custom-p">
                 <strong>Fiyat: </strong> {`${price} ${currency}`}
