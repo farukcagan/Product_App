@@ -9,9 +9,12 @@ interface ProductTableProps {
 
 const ProductTable: React.FC<ProductTableProps> = ({ products, headings }) => {
   return (
-    <div className="table-responsive" style={{ height: "400px", overflow: "auto" }}>
+    <div
+      className="table-responsive"
+      style={{ height: "400px", overflow: "auto" }}
+    >
       <table className="table table-striped table-bordered">
-        <thead className="thead-dark">
+        <thead className="thead-dark sticky-thead">
           <tr>
             {headings.map((heading, index) => (
               <th key={index}>{heading}</th>
@@ -20,10 +23,7 @@ const ProductTable: React.FC<ProductTableProps> = ({ products, headings }) => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <ProductTableRow
-              key={product.id}
-              product={product}
-            />
+            <ProductTableRow key={product.id} product={product} />
           ))}
         </tbody>
       </table>
@@ -32,5 +32,3 @@ const ProductTable: React.FC<ProductTableProps> = ({ products, headings }) => {
 };
 
 export default ProductTable;
-
-

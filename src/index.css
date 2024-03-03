@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.sticky-thead{
+position: sticky; 
+ top: 0;
+ background-color: white;
+ vertical-align: middle;
+}

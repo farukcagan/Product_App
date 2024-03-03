@@ -31,39 +31,35 @@ const ProductDetail: React.FC = () => {
   }: ProductModels = Array.isArray(productData) ? productData[0] : productData;
 
   return (
-    <div className="container">
-      <div className="card">
-        <div className="container-fluid">
-          <div className="wrapper row">
-            <div className="preview col-md-6">
-              <div className="image-container">
-                <img
-                  src={`/media/${image_name}.png`}
-                  alt={name}
-                  className="mb-3 product-image"
-                />
-              </div>
-            </div>
-            <div className="details col-md-6">
-              <h2 className="product-title">{name}</h2>
-              <p>
-                <strong>Kategori:</strong> {category}
-              </p>
-              <p>
-                <strong>Fiyat:</strong> {`${price} ${currency}`}
-              </p>
-              <p>
-                <strong>Açıklama:</strong> {description}
-              </p>
-              <p>
-                <strong>Renk:</strong> <span></span>
-                {color}
-              </p>
-            </div>
-          </div>
-        </div>
+    <div><div className="wrapper">
+      <div className="single-card">
+        <div className="img-area">
+          <img
+            src={`/media/${image_name}.png`}
+            alt={name}
+            className="image"
+          />
+        </div> 
+        <div className="info">
+        <h3>{name}</h3>
+        <p className="mt-2">
+          <strong>Kategori: </strong> {category}
+        </p>
+        <p>
+          <strong>Fiyat: </strong> {`${price} ${currency}`}
+        </p>
+        <p>
+          <strong>Açıklama: </strong> {description}
+        </p>
+        <p>
+          <strong>Renk: </strong>
+          {color}
+        </p>
       </div>
-    </div>
+      </div>
+    
+    </div></div>
+    
   );
 };
 

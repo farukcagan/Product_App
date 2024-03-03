@@ -129,7 +129,7 @@ const ProductList: React.FC = () => {
   ];
 
   return (
-    <div className="card p-5 container mt-2 mb-2">
+    <div className="card p-5 bg-light container mt-4 mb-2">
       <h1 className="text-left">Ürün Listesi</h1>
       <div className="d-flex gap-2 mb-3 justify-content-end">
         <SelectComponent
